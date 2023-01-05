@@ -1,0 +1,13 @@
+package com.example.nutris;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class NutrisApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(NutrisApplication.class, args);
+	}
+
+}
