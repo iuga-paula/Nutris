@@ -1,5 +1,6 @@
 package com.example.nutris.food;
 
+import com.example.nutris.food.repository.FoodRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

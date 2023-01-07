@@ -1,5 +1,7 @@
-package com.example.nutris.food;
+package com.example.nutris.food.service;
 
+import com.example.nutris.food.Food;
+import com.example.nutris.food.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

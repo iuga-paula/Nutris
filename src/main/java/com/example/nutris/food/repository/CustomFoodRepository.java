@@ -1,4 +1,6 @@
-package com.example.nutris.food;
+package com.example.nutris.food.repository;
+
+import com.example.nutris.food.Food;
 
 import java.util.List;
 import java.util.Map;

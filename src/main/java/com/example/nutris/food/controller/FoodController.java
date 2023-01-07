@@ -1,8 +1,8 @@
-package com.example.nutris.food;
+package com.example.nutris.food.controller;
 
 import com.example.nutris.errorMessage.ErrorMessage;
-import net.bytebuddy.pool.TypePool;
-import org.json.JSONObject;
+import com.example.nutris.food.Food;
+import com.example.nutris.food.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

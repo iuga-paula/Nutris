@@ -1,5 +1,8 @@
-package com.example.nutris.food;
+package com.example.nutris.food.repository;
 
+import com.example.nutris.food.Food;
+import com.example.nutris.food.FoodConstants;
+import com.example.nutris.food.repository.CustomFoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;

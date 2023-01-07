@@ -1,14 +1,14 @@
-package com.example.nutris.food;
+package com.example.nutris.food.repository;
 
+import com.example.nutris.food.Food;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 
 @Repository
-interface FoodRepository extends JpaRepository<Food,Long>, CustomFoodRepository {
+public interface FoodRepository extends JpaRepository<Food,Long>, CustomFoodRepository {
     Optional<Food> findByName(String name);
 
 }

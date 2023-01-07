@@ -1,6 +1,9 @@
-package com.example.nutris.food;
+package com.example.nutris.food.controller;
 
 import com.example.nutris.errorMessage.ErrorMessage;
+import com.example.nutris.food.Food;
+import com.example.nutris.food.FoodConstants;
+import com.example.nutris.food.service.SearchFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
