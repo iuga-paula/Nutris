@@ -38,6 +38,9 @@ public class CustomUser{
 
     private UserRole role = UserRole.NORMAL_USER;
 
+    public CustomUser() {
+
+    }
     public CustomUser(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

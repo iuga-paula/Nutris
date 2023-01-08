@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -46,13 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/api/v1/auth/register", "/api/v1/auth/login").permitAll()
+                .antMatchers("/api/v1/auth/register", "/api/v1/auth/login").permitAll()
                 .and()
-                .logout().logoutUrl("/api/v1/auth/logout").invalidateHttpSession(true)
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/api/v1/auth/logout", "GET")).invalidateHttpSession(true)
                 .and().authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/food").permitAll()
                 .and().authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/search_food").permitAll()
                 .and().authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/food").hasAuthority("NUTRIONIST")
                 .and().authorizeRequests().antMatchers(HttpMethod.PATCH, "/api/v1/food").hasAuthority("NUTRIONIST")
-                .and().authorizeRequests().antMatchers("/account/*").authenticated();
+                .anyRequest().authenticated();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.nutris.food.service;
 
 import com.example.nutris.food.Food;
+import com.example.nutris.food.FoodDTO;
 import com.example.nutris.food.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,13 @@ public class FoodService {
 
     public Optional<Food> getFoodByName(String foodName) {
         return foodRepository.findByName(foodName);
+    }
+
+    public Food addFood(FoodDTO food) throws Exception {
+        Optional<Food> testFood = foodRepository.findByName(food.getName());
+        if(testFood.isPresent()) {
+            throw new Exception("There is already an item with that name");
+        }
+        return foodRepository.saveAndFlush(new Food(food));
     }
 }
