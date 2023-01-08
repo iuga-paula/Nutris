@@ -1,8 +1,8 @@
 package com.example.nutris.food;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 
 @Entity
@@ -15,52 +15,52 @@ public class Food {
     @NotNull
     @Column(unique=true)
     private String name;
-    @Positive
+    @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float calories;
-    @Positive
+    @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float carbohydrates;
-    @Positive
+    @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float proteins;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float fats;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float sugar;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float fibre;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float water;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float cholesterol;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float potassium;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float vitaminC;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float calcium;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float iron;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float vitaminD;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float vitaminB6;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float cobalamin;
-    @Positive
+     @Min(value = 0, message = "To must be greater than zero")
     @Column(columnDefinition = "float default 0.0")
     private Float magnesium;
 
@@ -70,8 +70,7 @@ public class Food {
     @Column(columnDefinition = "text")
     private String badFor;
 
-    public Food(Long id, String name, Float calories, Float carbohydrates, Float proteins, Float fats, Float sugar, Float fibre, Float water, Float cholesterol, Float potassium, Float vitaminC, Float calcium, Float iron, Float vitaminD, Float vitaminB6, Float cobalamin, Float magnesium, String goodFor, String badFor) {
-        this.id = id;
+    public Food(String name, Float calories, Float carbohydrates, Float proteins, Float fats, Float sugar, Float fibre, Float water, Float cholesterol, Float potassium, Float vitaminC, Float calcium, Float iron, Float vitaminD, Float vitaminB6, Float cobalamin, Float magnesium, String goodFor, String badFor) {
         this.name = name;
         this.calories = calories;
         this.carbohydrates = carbohydrates;

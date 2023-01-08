@@ -1,6 +1,6 @@
 package com.example.nutris.food.controller;
 
-import com.example.nutris.errorMessage.ErrorMessage;
+import com.example.nutris.errorMessage.ResponseMessage;
 import com.example.nutris.food.Food;
 import com.example.nutris.food.FoodConstants;
 import com.example.nutris.food.service.SearchFoodService;
@@ -33,7 +33,7 @@ public class SearchFoodController {
     public ResponseEntity<?> searchFood(@RequestParam Map<String, String> params) {
         Optional<String> validationMessage = this.validateSearchParams(params);
         if (validationMessage.isPresent()) {
-            return new ResponseEntity<>(new ErrorMessage(validationMessage.get()).getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseMessage(validationMessage.get()).getMessage(), HttpStatus.BAD_REQUEST);
         }
 
         List<Food> result = this.searchFoodService.searchFood(params);

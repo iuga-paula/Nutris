@@ -2,10 +2,10 @@ package com.example.nutris.errorMessage;
 
 import org.json.JSONObject;
 
-public class ErrorMessage {
+public class ResponseMessage {
     private final String message;
 
-    public ErrorMessage(String message) {
+    public ResponseMessage(String message) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("message", message);
         this.message = jsonObject.toString();
@@ -14,4 +14,5 @@ public class ErrorMessage {
     public String getMessage() {
         return message;
     }
+
 }

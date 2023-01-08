@@ -1,6 +1,6 @@
 package com.example.nutris.food.controller;
 
-import com.example.nutris.errorMessage.ErrorMessage;
+import com.example.nutris.errorMessage.ResponseMessage;
 import com.example.nutris.food.Food;
 import com.example.nutris.food.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class FoodController {
     public ResponseEntity<?> getFood(@RequestParam(required = false, name = "id") Long foodId,
                                          @RequestParam(required = false, name = "name") String foodName) {
         if (foodId == null && foodName == null) {
-            return new ResponseEntity<>(new ErrorMessage("You should search food by id of name").getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseMessage("You should search food by id of name").getMessage(), HttpStatus.BAD_REQUEST);
         }
         Optional<Food> food = Optional.empty();
         if (foodId != null) {
