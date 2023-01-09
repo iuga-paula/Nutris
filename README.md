@@ -1,6 +1,6 @@
 <div align="center">
   <a href=https://github.com/iuga-paula/Nutris">
-    <img src="https://github.com/iuga-paula/Nutris/blob/main/NutrisLogo.png" alt="Logo">
+    <img src="https://github.com/iuga-paula/Nutris/blob/master/NutrisLogo.png" alt="Logo">
   </a>
 
   <h3 align="center">Nutris</h3>
@@ -15,5 +15,5 @@
 </div>
 
 
-#### [Requirements document](https://github.com/iuga-paula/Nutris/blob/main/Requirements_document.pdf)
+#### [Requirements document](https://github.com/iuga-paula/Nutris/blob/master/Requirements_document.pdf)
 #### [Swagger documentation](https://app.swaggerhub.com/apis/iuga-paula/Nutris/1.0.0)
