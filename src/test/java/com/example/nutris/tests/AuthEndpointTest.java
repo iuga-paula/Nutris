@@ -1,5 +1,6 @@
 package com.example.nutris.tests;
 
+import com.example.nutris.errorMessage.ResponseMessage;
 import com.example.nutris.user.AuthController;
 import com.example.nutris.user.AuthService;
 import com.example.nutris.user.UserRepository;
@@ -7,6 +8,7 @@ import com.example.nutris.user.UserRole;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,80 +16,69 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.LinkedMultiValueMap;
 
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.http.RequestEntity.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
 public class AuthEndpointTest {
 
-
     private final String endpoint = "/api/v1/auth";
-
-    @InjectMocks
-
-    private AuthController authController;
-
     @Autowired
+    private AuthController authController;
     private MockMvc mockMvc;
 
-
-    @Test
-    public void givenValidUserDataRegiter() {
-        ResponseEntity<?> result =  authController.registerUser("Anatonia", "Ileana", "ile@mail.com", "a0dadada");
-        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+    @BeforeEach
+    public void setUp() {
+        mockMvc = MockMvcBuilders.standaloneSetup(authController).build();
     }
 
 
     @Test
-    @Disabled
     public void givenValidDataRegisterReturnOk() throws Exception {
-
-        String params = getPostData();
-        mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/register").content(params).
-                contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
+        List<Pair<String, String>> params = List.of(Pair.of("firstName", "Test"), Pair.of("lastName", "Test"), Pair.of("email", "test@mail.com"), Pair.of("password", "03902930013"));
+        LinkedMultiValueMap<String, String> paramsMap = toQueryParams(params);
+        mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/register").params(paramsMap).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
     }
 
     @Test
-    @Disabled
     public void givenExistingEmailReturnFail() throws Exception {
-        String params = getPostData();
-        mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/register").content(params).
-                contentType(MediaType.APPLICATION_JSON));
-
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/register").content(params).
-                contentType(MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest()).andReturn();
-
+        List<Pair<String, String>> params = List.of(Pair.of("firstName", "Test"), Pair.of("lastName", "Test"), Pair.of("email", "test@mail.com"), Pair.of("password", "03902930013"));
+        LinkedMultiValueMap<String, String> paramsMap = toQueryParams(params);
+        mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/register").params(paramsMap).contentType(MediaType.APPLICATION_JSON));
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/register").params(paramsMap).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest()).andReturn();
         Assertions.assertTrue(result.getResponse().getContentAsString().contains("Email already used!"));
     }
 
     @Test
-    public void givenUserLogin() throws Exception {
-        String params = getLoginData();
-        mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/login").content(params).
-                contentType(MediaType.APPLICATION_JSON));
+    public void giveWrongLoginReturnFail() throws Exception {
+        List<Pair<String, String>> params = List.of(Pair.of("email", "test@mail.com"), Pair.of("password", "03902930013"));
+        LinkedMultiValueMap<String, String> paramsMap = toQueryParams(params);
+        mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/login").params(paramsMap).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound()).andReturn();
     }
+    private LinkedMultiValueMap<String, String> toQueryParams(List<Pair<String, String>> vars) {
+        LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
-    public String getPostData() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("firstName", "Test");
-        jsonObject.put("lastName", "Test");
-        jsonObject.put("email", "test@mail.com");
-        jsonObject.put("password", "03902930013");
-        return jsonObject.toString();
-    }
-
-    public String getLoginData() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("email", "test@mail.com");
-        jsonObject.put("password", "03902930013");
-        return jsonObject.toString();
+        for (Pair<String, String> var : vars) {
+            params.add(var.getFirst(), var.getSecond());
+        }
+        return params;
     }
 }
