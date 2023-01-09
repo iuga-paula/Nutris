@@ -52,6 +52,7 @@ public class FoodDTO {
 
     private String badFor;
 
+    public FoodDTO() {}
     public FoodDTO(String name, Float calories, Float carbohydrates, Float proteins, Float fats, Float sugar, Float fibre, Float water, Float cholesterol, Float potassium, Float vitaminC, Float calcium, Float iron, Float vitaminD, Float vitaminB6, Float cobalamin, Float magnesium, String goodFor, String badFor) {
         this.name = name;
         this.calories = calories;

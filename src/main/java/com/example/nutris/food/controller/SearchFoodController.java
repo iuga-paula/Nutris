@@ -21,13 +21,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "api/v1/search_food", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SearchFoodController {
-    private final SearchFoodService searchFoodService;
-
     @Autowired
-
-    public SearchFoodController(SearchFoodService searchFoodService) {
-        this.searchFoodService = searchFoodService;
-    }
+    private SearchFoodService searchFoodService;
 
     @GetMapping()
     public ResponseEntity<?> searchFood(@RequestParam Map<String, String> params) {

@@ -31,6 +31,7 @@ import org.springframework.util.LinkedMultiValueMap;
 
 import java.util.List;
 
+import static com.example.nutris.tests.TestUtil.toQueryParams;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.RequestEntity.post;
@@ -69,16 +70,9 @@ public class AuthEndpointTest {
 
     @Test
     public void giveWrongLoginReturnFail() throws Exception {
-        List<Pair<String, String>> params = List.of(Pair.of("email", "test@mail.com"), Pair.of("password", "03902930013"));
+        List<Pair<String, String>> params = List.of(Pair.of("email", "test32@mail.com"), Pair.of("password", "03902930013"));
         LinkedMultiValueMap<String, String> paramsMap = toQueryParams(params);
         mockMvc.perform(MockMvcRequestBuilders.post(endpoint + "/login").params(paramsMap).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound()).andReturn();
     }
-    private LinkedMultiValueMap<String, String> toQueryParams(List<Pair<String, String>> vars) {
-        LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
-        for (Pair<String, String> var : vars) {
-            params.add(var.getFirst(), var.getSecond());
-        }
-        return params;
-    }
 }

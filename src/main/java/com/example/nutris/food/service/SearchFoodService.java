@@ -10,12 +10,9 @@ import java.util.Map;
 
 @Service
 public class SearchFoodService {
-    private final FoodRepository foodRepository;
-
     @Autowired
-    public SearchFoodService(FoodRepository foodRepository) {
-        this.foodRepository = foodRepository;
-    }
+    private FoodRepository foodRepository;
+
 
     public List<Food> searchFood(Map<String, String> params) {
         return this.foodRepository.searchFood(params);

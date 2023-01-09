@@ -20,6 +20,15 @@ public class PhysicalActivityDTO {
     private Integer duration;
 
     private Float caloriesBurnt;
+    public PhysicalActivityDTO() {
+
+    }
+    public PhysicalActivityDTO(String name, String date, Integer duration, Float caloriesBurnt) {
+        this.name = name;
+        this.date = date;
+        this.duration = duration;
+        this.caloriesBurnt = caloriesBurnt;
+    }
 
     public String getName() {
         return name;
