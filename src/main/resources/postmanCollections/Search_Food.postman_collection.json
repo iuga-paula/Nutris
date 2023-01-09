@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "4dfa4809-3b45-45df-975f-844f9aab4220",
+		"name": "Search Food",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16868793"
+	},
+	"item": [
+		{
+			"name": "Search food",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/search_food?calories=95.0&goodFor=Weight management",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"search_food"
+					],
+					"query": [
+						{
+							"key": "calories",
+							"value": "95.0"
+						},
+						{
+							"key": "goodFor",
+							"value": "Weight management"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/search_food?haina=nana&lala=mama",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"search_food"
+							],
+							"query": [
+								{
+									"key": "haina",
+									"value": "nana"
+								},
+								{
+									"key": "lala",
+									"value": "mama"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 11:46:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"wrong parameter provided - haina\"\n}"
+				},
+				{
+					"name": "Search food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/search_food?fats=>ana",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"search_food"
+							],
+							"query": [
+								{
+									"key": "fats",
+									"value": ">ana"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 14:15:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Wrong value supplied for parameter fats, must be float\"\n}"
+				},
+				{
+					"name": "Search food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/search_food?fats=<10&calories=<100.5&limit=ana",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"search_food"
+							],
+							"query": [
+								{
+									"key": "fats",
+									"value": "<10"
+								},
+								{
+									"key": "calories",
+									"value": "<100.5"
+								},
+								{
+									"key": "limit",
+									"value": "ana"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "54"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 14:16:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Wrong value supplied for limit parameter\"\n}"
+				},
+				{
+					"name": "Search food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/search_food?fats=<10&calories=<100.5&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"search_food"
+							],
+							"query": [
+								{
+									"key": "fats",
+									"value": "<10"
+								},
+								{
+									"key": "calories",
+									"value": "<100.5"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 14:18:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"apple\",\n        \"calories\": 95,\n        \"carbohydrates\": 25,\n        \"proteins\": 1,\n        \"fats\": 0,\n        \"sugar\": 19,\n        \"fibre\": 3,\n        \"water\": 86,\n        \"cholesterol\": 0,\n        \"potassium\": 0,\n        \"vitaminC\": 7,\n        \"calcium\": 0,\n        \"iron\": 0,\n        \"vitaminD\": 0,\n        \"vitaminB6\": 0,\n        \"cobalamin\": 0,\n        \"magnesium\": 1,\n        \"goodFor\": \"Cardiovascular disease, Type 2 diabetes, Weight management, Cancer\",\n        \"badFor\": \"digestive issues, sensitive teeth\"\n    }\n]"
+				},
+				{
+					"name": "Search food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/search_food?fats=<10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"search_food"
+							],
+							"query": [
+								{
+									"key": "fats",
+									"value": "<10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 14:19:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"apple\",\n        \"calories\": 95,\n        \"carbohydrates\": 25,\n        \"proteins\": 1,\n        \"fats\": 0,\n        \"sugar\": 19,\n        \"fibre\": 3,\n        \"water\": 86,\n        \"cholesterol\": 0,\n        \"potassium\": 0,\n        \"vitaminC\": 7,\n        \"calcium\": 0,\n        \"iron\": 0,\n        \"vitaminD\": 0,\n        \"vitaminB6\": 0,\n        \"cobalamin\": 0,\n        \"magnesium\": 1,\n        \"goodFor\": \"Cardiovascular disease, Type 2 diabetes, Weight management, Cancer\",\n        \"badFor\": \"digestive issues, sensitive teeth\"\n    }\n]"
+				},
+				{
+					"name": "Search food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/search_food?calories=95.0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"search_food"
+							],
+							"query": [
+								{
+									"key": "calories",
+									"value": "95.0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 14:20:38 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"apple\",\n        \"calories\": 95,\n        \"carbohydrates\": 25,\n        \"proteins\": 1,\n        \"fats\": 0,\n        \"sugar\": 19,\n        \"fibre\": 3,\n        \"water\": 86,\n        \"cholesterol\": 0,\n        \"potassium\": 0,\n        \"vitaminC\": 7,\n        \"calcium\": 0,\n        \"iron\": 0,\n        \"vitaminD\": 0,\n        \"vitaminB6\": 0,\n        \"cobalamin\": 0,\n        \"magnesium\": 1,\n        \"goodFor\": \"Cardiovascular disease, Type 2 diabetes, Weight management, Cancer\",\n        \"badFor\": \"digestive issues, sensitive teeth\"\n    }\n]"
+				},
+				{
+					"name": "Search food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/search_food?calories=95.0&goodFor=Weight management",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"search_food"
+							],
+							"query": [
+								{
+									"key": "calories",
+									"value": "95.0"
+								},
+								{
+									"key": "goodFor",
+									"value": "Weight management"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 14:23:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"apple\",\n        \"calories\": 95,\n        \"carbohydrates\": 25,\n        \"proteins\": 1,\n        \"fats\": 0,\n        \"sugar\": 19,\n        \"fibre\": 3,\n        \"water\": 86,\n        \"cholesterol\": 0,\n        \"potassium\": 0,\n        \"vitaminC\": 7,\n        \"calcium\": 0,\n        \"iron\": 0,\n        \"vitaminD\": 0,\n        \"vitaminB6\": 0,\n        \"cobalamin\": 0,\n        \"magnesium\": 1,\n        \"goodFor\": \"Cardiovascular disease, Type 2 diabetes, Weight management, Cancer\",\n        \"badFor\": \"digestive issues, sensitive teeth\"\n    }\n]"
+				}
+			]
+		}
+	]
+}

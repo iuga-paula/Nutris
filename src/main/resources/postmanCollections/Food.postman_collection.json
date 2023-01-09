@@ -1,0 +1,1005 @@
+{
+	"info": {
+		"_postman_id": "1655b10e-dda8-49ae-a19e-8031adee164d",
+		"name": "Food",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16868793"
+	},
+	"item": [
+		{
+			"name": "Get food by name or id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/food?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"food"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 10:49:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"You should search food by id of name\"\n}"
+				},
+				{
+					"name": "Get food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 10:49:21 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Get food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 10:49:27 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"apple\",\n    \"calories\": 95,\n    \"carbohydrates\": 25,\n    \"proteins\": 1,\n    \"fats\": 0,\n    \"sugar\": 19,\n    \"fibre\": 3,\n    \"water\": 86,\n    \"cholesterol\": 0,\n    \"potassium\": 0,\n    \"vitaminC\": 7,\n    \"calcium\": 0,\n    \"iron\": 0,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"Cardiovascular disease, Type 2 diabetes, Weight management, Cancer\",\n    \"badFor\": \"digestive issues, sensitive teeth\"\n}"
+				},
+				{
+					"name": "Get food",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food?name=apple",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "apple"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 10:49:42 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"apple\",\n    \"calories\": 95,\n    \"carbohydrates\": 25,\n    \"proteins\": 1,\n    \"fats\": 0,\n    \"sugar\": 19,\n    \"fibre\": 3,\n    \"water\": 86,\n    \"cholesterol\": 0,\n    \"potassium\": 0,\n    \"vitaminC\": 7,\n    \"calcium\": 0,\n    \"iron\": 0,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"Cardiovascular disease, Type 2 diabetes, Weight management, Cancer\",\n    \"badFor\": \"digestive issues, sensitive teeth\"\n}"
+				}
+			]
+		},
+		{
+			"name": "AddFood",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"pear\",\n    \"calories\": 57,\n    \"carbohydrates\": 15,\n    \"proteins\": 0.4,\n    \"fats\": 0.1,\n    \"sugar\": 10,\n    \"fibre\": 3.1,\n    \"water\": 58,\n    \"cholesterol\": 0,\n    \"potassium\": 0.116,\n    \"vitaminC\": 7,\n    \"calcium\": 0,\n    \"iron\": 1,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"cell reparation, diabetes, Risk of Stroke, Hangover Symptoms\",\n    \"badFor\": \"people with irritable bowel syndrome (IBS) and Crohn's disease\" }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/food",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"food"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "AddFood",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Set-Cookie",
+							"value": "JSESSIONID=73BB8CD3874B7782A6832A67DDA83FA3; Path=/; HttpOnly"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 08 Jan 2023 12:10:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2023-01-08T12:10:43.413+00:00\",\n    \"status\": 403,\n    \"error\": \"Forbidden\",\n    \"path\": \"/api/v1/food\"\n}"
+				},
+				{
+					"name": "AddFood",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 08 Jan 2023 13:14:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2023-01-08T13:14:57.461+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/api/v1/food\"\n}"
+				},
+				{
+					"name": "AddFood",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"pear\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 08 Jan 2023 13:51:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"There is already an item with that name\"\n}"
+				},
+				{
+					"name": "AddFood",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"pear\",\n\"calories\": -100}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 08 Jan 2023 13:56:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2023-01-08T13:56:35.286+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/api/v1/food\"\n}"
+				},
+				{
+					"name": "AddFood",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pear\",\n    \"calories\": 57,\n    \"carbohydrates\": 15,\n    \"proteins\": 0.4,\n    \"fats\": 0.1,\n    \"sugar\": 10,\n    \"fibre\": 3.1,\n    \"water\": 58,\n    \"cholesterol\": 0,\n    \"potassium\": 0.116,\n    \"vitaminC\": 7,\n    \"calcium\": 0,\n    \"iron\": 1,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"cell reparation, diabetes, Risk of Stroke, Hangover Symptoms\",\n    \"badFor\": \"people with irritable bowel syndrome (IBS) and Crohn's disease\" }"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 08 Jan 2023 14:20:02 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"pear\",\n    \"calories\": 57,\n    \"carbohydrates\": 15,\n    \"proteins\": 0.4,\n    \"fats\": 0.1,\n    \"sugar\": 10,\n    \"fibre\": 3.1,\n    \"water\": 58,\n    \"cholesterol\": 0,\n    \"potassium\": 0.116,\n    \"vitaminC\": 7,\n    \"calcium\": 0,\n    \"iron\": 1,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"cell reparation, diabetes, Risk of Stroke, Hangover Symptoms\",\n    \"badFor\": \"people with irritable bowel syndrome (IBS) and Crohn's disease\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update food",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"green apple\",\n    \"calories\": 57,\n    \"carbohydrates\": 15,\n    \"proteins\": 0.4,\n    \"fats\": 0.1,\n    \"sugar\": 10,\n    \"fibre\": 3.1,\n    \"water\": 58,\n    \"cholesterol\": 0,\n    \"potassium\": 0.116,\n    \"vitaminC\": 8,\n    \"calcium\": 0,\n    \"iron\": 1.1,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"cell reparation, diabetes, Risk of Stroke, Hangover Symptoms\",\n    \"badFor\": \"people with irritable bowel syndrome (IBS) and Crohn's disease, source of pesticides\" }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/food?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"food"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update food",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 09 Jan 2023 08:57:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2023-01-09T08:57:44.026+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/api/v1/food\"\n}"
+				},
+				{
+					"name": "Update food",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 09 Jan 2023 08:57:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2023-01-09T08:57:52.397+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/api/v1/food\"\n}"
+				},
+				{
+					"name": "Update food",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"green apple\",\n    \"calories\": 57,\n    \"carbohydrates\": 15,\n    \"proteins\": 0.4,\n    \"fats\": 0.1,\n    \"sugar\": 10,\n    \"fibre\": 3.1,\n    \"water\": 58,\n    \"cholesterol\": 0,\n    \"potassium\": 0.116,\n    \"vitaminC\": 8,\n    \"calcium\": 0,\n    \"iron\": 1.1,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"cell reparation, diabetes, Risk of Stroke, Hangover Symptoms\",\n    \"badFor\": \"people with irritable bowel syndrome (IBS) and Crohn's disease, source of pesticides\" }"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 09 Jan 2023 09:01:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"apple\",\n    \"calories\": 57,\n    \"carbohydrates\": 15,\n    \"proteins\": 0.4,\n    \"fats\": 0.1,\n    \"sugar\": 10,\n    \"fibre\": 3.1,\n    \"water\": 58,\n    \"cholesterol\": 0,\n    \"potassium\": 0.116,\n    \"vitaminC\": 8,\n    \"calcium\": 0,\n    \"iron\": 1.1,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"cell reparation, diabetes, Risk of Stroke, Hangover Symptoms\",\n    \"badFor\": \"people with irritable bowel syndrome (IBS) and Crohn's disease, source of pesticides\"\n}"
+				},
+				{
+					"name": "Update food",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"green apple\",\n    \"calories\": 57,\n    \"carbohydrates\": 15,\n    \"proteins\": 0.4,\n    \"fats\": 0.1,\n    \"sugar\": 10,\n    \"fibre\": 3.1,\n    \"water\": 58,\n    \"cholesterol\": 0,\n    \"potassium\": 0.116,\n    \"vitaminC\": 8,\n    \"calcium\": 0,\n    \"iron\": 1.1,\n    \"vitaminD\": 0,\n    \"vitaminB6\": 0,\n    \"cobalamin\": 0,\n    \"magnesium\": 1,\n    \"goodFor\": \"cell reparation, diabetes, Risk of Stroke, Hangover Symptoms\",\n    \"badFor\": \"people with irritable bowel syndrome (IBS) and Crohn's disease, source of pesticides\" }"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/food?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"food"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 09 Jan 2023 09:02:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"There is no item with provided id\"\n}"
+				}
+			]
+		}
+	]
+}
