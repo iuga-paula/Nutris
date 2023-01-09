@@ -16,4 +16,4 @@
 
 
 #### [Requirements document](https://github.com/iuga-paula/Nutris/blob/main/Requirements%20document.pdf)
-#### [Swagger documentation]()
+#### [Swagger documentation](https://app.swaggerhub.com/apis/iuga-paula/Nutris/1.0.0)

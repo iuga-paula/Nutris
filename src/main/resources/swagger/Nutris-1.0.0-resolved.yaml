@@ -1,0 +1,2108 @@
+---
+openapi: 3.0.0
+info:
+  title: Nutris
+  description: A health and nutrition API made with JAVA Spring Boot.
+  contact:
+    email: iuga.paula@gmail.com
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/iuga-paula/Nutris/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: auth
+  description: endpoint contains register, login, logout requests
+- name: food
+  description: enpoind to add, update, get food by name/id
+- name: search_food
+  description: endpoint to search for food by some nutrion values
+- name: diet
+  description: endpoint to post, delete eaten items and to get no calories eaten in a period of time
+- name: activity
+  description: endpoint to post a physical activity and query activities done in a period of time
+- name: nutrionists
+  description: Secured nutrionists-only calls
+- name: developers
+  description: Operations available to regular developers
+paths:
+  /api/v1/auth/register:
+    post:
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth_register_body'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Email already used
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+  /api/v1/auth/login:
+    post:
+      tags:
+      - auth
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth_login_body'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "400":
+          description: Wrong password
+  /api/v1/auth/logout:
+    post:
+      tags:
+      - auth
+      summary: Logout
+      responses:
+        "200":
+          description: OK
+  /api/v1/food:
+    get:
+      tags:
+      - food
+      summary: Get food by name or id
+      parameters:
+      - name: id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+        example: "1"
+      - name: name
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+        example: apple
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Sat, 07 Jan 2023 10:49:27 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Get food
+                  value:
+                    id: 1
+                    name: apple
+                    calories: 95
+                    carbohydrates: 25
+                    proteins: 1
+                    fats: 0
+                    sugar: 19
+                    fibre: 3
+                    water: 86
+                    cholesterol: 0
+                    potassium: 0
+                    vitaminC: 7
+                    calcium: 0
+                    iron: 0
+                    vitaminD: 0
+                    vitaminB6: 0
+                    cobalamin: 0
+                    magnesium: 1
+                    goodFor: Cardiovascular disease, Type 2 diabetes, Weight management, Cancer
+                    badFor: digestive issues, sensitive teeth
+                example-1:
+                  summary: Get food
+                  value:
+                    id: 1
+                    name: apple
+                    calories: 95
+                    carbohydrates: 25
+                    proteins: 1
+                    fats: 0
+                    sugar: 19
+                    fibre: 3
+                    water: 86
+                    cholesterol: 0
+                    potassium: 0
+                    vitaminC: 7
+                    calcium: 0
+                    iron: 0
+                    vitaminD: 0
+                    vitaminB6: 0
+                    cobalamin: 0
+                    magnesium: 1
+                    goodFor: Cardiovascular disease, Type 2 diabetes, Weight management, Cancer
+                    badFor: digestive issues, sensitive teeth
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 50
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Sat, 07 Jan 2023 10:49:15 GMT
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: You should search food by id of name
+        "404":
+          description: Not Found
+          headers:
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Sat, 07 Jan 2023 10:49:21 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: string
+    post:
+      tags:
+      - food
+      - nutrionists
+      summary: Add food
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1_food_body'
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Sun, 08 Jan 2023 14:20:02 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: pear
+                calories: 57
+                carbohydrates: 15
+                proteins: 0.4
+                fats: 0.1
+                sugar: 10
+                fibre: 3.1
+                water: 58
+                cholesterol: 0
+                potassium: 0.116
+                vitaminC: 7
+                calcium: 0
+                iron: 1
+                vitaminD: 0
+                vitaminB6: 0
+                cobalamin: 0
+                magnesium: 1
+                goodFor: cell reparation, diabetes, Risk of Stroke, Hangover Symptoms
+                badFor: people with irritable bowel syndrome (IBS) and Crohn's disease
+        "400":
+          description: Bad Request
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Sun, 08 Jan 2023 13:14:57 GMT
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: AddFood
+                  value:
+                    timestamp: 2023-01-08T13:14:57.461+00:00
+                    status: 400
+                    error: Bad Request
+                    path: /api/v1/food
+                example-1:
+                  summary: AddFood
+                  value:
+                    message: There is already an item with that name
+                example-2:
+                  summary: AddFood
+                  value:
+                    timestamp: 2023-01-08T13:56:35.286+00:00
+                    status: 400
+                    error: Bad Request
+                    path: /api/v1/food
+        "403":
+          description: Forbidden
+          headers:
+            Set-Cookie:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: JSESSIONID=73BB8CD3874B7782A6832A67DDA83FA3; Path=/; HttpOnly
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Sun, 08 Jan 2023 12:10:43 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                timestamp: 2023-01-08T12:10:43.413+00:00
+                status: 403
+                error: Forbidden
+                path: /api/v1/food
+    patch:
+      tags:
+      - food
+      - nutrionists
+      summary: Update food
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      - name: id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+        example: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              name: pear
+              calories: 57
+              carbohydrates: 15
+              proteins: 0.4
+              fats: 0.1
+              sugar: 10
+              fibre: 3.1
+              water: 58
+              cholesterol: 0
+              potassium: 0.116
+              vitaminC: 7
+              calcium: 0
+              iron: 1
+              vitaminD: 0
+              vitaminB6: 0
+              cobalamin: 0
+              magnesium: 1
+              goodFor: cell reparation, diabetes, Risk of Stroke, Hangover Symptoms
+              badFor: people with irritable bowel syndrome (IBS) and Crohn's disease
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 09:01:46 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                name: apple
+                calories: 57
+                carbohydrates: 15
+                proteins: 0.4
+                fats: 0.1
+                sugar: 10
+                fibre: 3.1
+                water: 58
+                cholesterol: 0
+                potassium: 0.116
+                vitaminC: 8
+                calcium: 0
+                iron: 1.1
+                vitaminD: 0
+                vitaminB6: 0
+                cobalamin: 0
+                magnesium: 1
+                goodFor: cell reparation, diabetes, Risk of Stroke, Hangover Symptoms
+                badFor: people with irritable bowel syndrome (IBS) and Crohn's disease, source of pesticides
+        "400":
+          description: Bad Request
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 08:57:44 GMT
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Update food
+                  value:
+                    timestamp: 2023-01-09T08:57:44.026+00:00
+                    status: 400
+                    error: Bad Request
+                    path: /api/v1/food
+                example-1:
+                  summary: Update food
+                  value:
+                    timestamp: 2023-01-09T08:57:52.397+00:00
+                    status: 400
+                    error: Bad Request
+                    path: /api/v1/food
+                example-2:
+                  summary: Update food
+                  value:
+                    message: There is no item with provided id
+  /api/v1/search_food:
+    get:
+      tags:
+      - search_food
+      summary: Search food
+      parameters:
+      - name: calories
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+        example: "95.0"
+      - name: carbohydrates
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 15
+      - name: proteins
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: potassium
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: fats
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: sugar
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: fibre
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: water
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: cholesterol
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: vitaminC
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: vitaminD
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+          example: 0.4
+      - name: goodFor
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: diabetes
+      - name: badFor
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: cancer
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Sat, 07 Jan 2023 14:18:36 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Search food
+                  value:
+                  - id: 1
+                    name: apple
+                    calories: 95
+                    carbohydrates: 25
+                    proteins: 1
+                    fats: 0
+                    sugar: 19
+                    fibre: 3
+                    water: 86
+                    cholesterol: 0
+                    potassium: 0
+                    vitaminC: 7
+                    calcium: 0
+                    iron: 0
+                    vitaminD: 0
+                    vitaminB6: 0
+                    cobalamin: 0
+                    magnesium: 1
+                    goodFor: Cardiovascular disease, Type 2 diabetes, Weight management, Cancer
+                    badFor: digestive issues, sensitive teeth
+                example-1:
+                  summary: Search food
+                  value:
+                  - id: 1
+                    name: apple
+                    calories: 95
+                    carbohydrates: 25
+                    proteins: 1
+                    fats: 0
+                    sugar: 19
+                    fibre: 3
+                    water: 86
+                    cholesterol: 0
+                    potassium: 0
+                    vitaminC: 7
+                    calcium: 0
+                    iron: 0
+                    vitaminD: 0
+                    vitaminB6: 0
+                    cobalamin: 0
+                    magnesium: 1
+                    goodFor: Cardiovascular disease, Type 2 diabetes, Weight management, Cancer
+                    badFor: digestive issues, sensitive teeth
+                example-2:
+                  summary: Search food
+                  value:
+                  - id: 1
+                    name: apple
+                    calories: 95
+                    carbohydrates: 25
+                    proteins: 1
+                    fats: 0
+                    sugar: 19
+                    fibre: 3
+                    water: 86
+                    cholesterol: 0
+                    potassium: 0
+                    vitaminC: 7
+                    calcium: 0
+                    iron: 0
+                    vitaminD: 0
+                    vitaminB6: 0
+                    cobalamin: 0
+                    magnesium: 1
+                    goodFor: Cardiovascular disease, Type 2 diabetes, Weight management, Cancer
+                    badFor: digestive issues, sensitive teeth
+                example-3:
+                  summary: Search food
+                  value:
+                  - id: 1
+                    name: apple
+                    calories: 95
+                    carbohydrates: 25
+                    proteins: 1
+                    fats: 0
+                    sugar: 19
+                    fibre: 3
+                    water: 86
+                    cholesterol: 0
+                    potassium: 0
+                    vitaminC: 7
+                    calcium: 0
+                    iron: 0
+                    vitaminD: 0
+                    vitaminB6: 0
+                    cobalamin: 0
+                    magnesium: 1
+                    goodFor: Cardiovascular disease, Type 2 diabetes, Weight management, Cancer
+                    badFor: digestive issues, sensitive teeth
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 46
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Sat, 07 Jan 2023 11:46:46 GMT
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Search food
+                  value:
+                    message: wrong parameter provided - haina
+                example-1:
+                  summary: Search food
+                  value:
+                    message: Wrong value supplied for parameter fats, must be float
+                example-2:
+                  summary: Search food
+                  value:
+                    message: Wrong value supplied for limit parameter
+  /api/v1/diet:
+    get:
+      tags:
+      - developers
+      - diet
+      summary: Get calories from interval
+      parameters:
+      - name: startDate
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 2021-01-01
+      - name: endDate
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 2022-03-01
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 27
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 14:18:33 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: 95.0 calories
+    post:
+      tags:
+      - diet
+      - developers
+      summary: Post diet
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1_diet_body'
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 14:07:21 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 3
+                date: 2021-10-19T21:00:00.000+00:00
+                food:
+                  id: 1
+                  name: apple
+                  calories: 95
+                  carbohydrates: 25
+                  proteins: 1
+                  fats: 0
+                  sugar: 19
+                  fibre: 3
+                  water: 86
+                  cholesterol: 0
+                  potassium: 0
+                  vitaminC: 7
+                  calcium: 0
+                  iron: 0
+                  vitaminD: 0
+                  vitaminB6: 0
+                  cobalamin: 0
+                  magnesium: 1
+                  goodFor: Cardiovascular disease, Type 2 diabetes, Weight management, Cancer
+                  badFor: digestive issues, sensitive teeth
+                userId: 2
+        "400":
+          description: Bad Request
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 38
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 13:24:56 GMT
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Post diet
+                  value:
+                    message: Specified food not found
+                example-1:
+                  summary: Post diet
+                  value:
+                    timestamp: 2023-01-09T13:29:25.441+00:00
+                    status: 400
+                    error: Bad Request
+                    path: /api/v1/diet
+    delete:
+      tags:
+      - diet
+      - developers
+      summary: Delete diet
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      - name: id
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+        example: "4"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 39
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 14:01:17 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Diet successfully deleted
+        "400":
+          description: No diet id provided
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 38
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 13:24:56 GMT
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+        "404":
+          description: Not Found
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 28
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 14:00:27 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Diet not found
+  /api/v1/activity:
+    get:
+      tags:
+      - activity
+      - developers
+      summary: Get activities from interval
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      - name: startDate
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 2021-01-01
+      - name: endDate
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 2022-03-01
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 13:51:50 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+              - id: 3
+                name: TRX
+                date: 2021-01-18
+                duration: 30
+                caloriesBurnt: 60
+                user_id: 2
+              - id: 4
+                name: Zumba
+                date: 2021-01-20
+                duration: 30
+                caloriesBurnt: 60
+                user_id: 2
+              - id: 5
+                name: Zumba
+                date: 2021-02-20
+                duration: 30
+                caloriesBurnt: 60
+                user_id: 2
+        "400":
+          description: Bad Request
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: chunked
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 11:49:34 GMT
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Get activities from interval
+                  value:
+                    timestamp: 2023-01-09T11:49:34.527+00:00
+                    status: 400
+                    error: Bad Request
+                    path: /api/v1/activity
+                example-1:
+                  summary: Get activities from interval
+                  value:
+                    message: Please provide all params
+    post:
+      tags:
+      - activity
+      - developers
+      summary: Post activity
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1_activity_body'
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 90
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 13:49:12 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 3
+                name: Zumba
+                date: 2021-02-12
+                duration: 30
+                caloriesBurnt: 60
+                user_id: 2
+    delete:
+      tags:
+      - activity
+      - developers
+      summary: Delete activity
+      parameters:
+      - name: id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+        example: "3"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Content-Type-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1; mode=block
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 0
+            X-Frame-Options:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                example: 43
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: Mon, 09 Jan 2023 11:39:37 GMT
+            Keep-Alive:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Activity successfully deleted
+components:
+  schemas:
+    auth_register_body:
+      required:
+      - email
+      - firstName
+      - lastName
+      - password
+      type: object
+      properties:
+        lastName:
+          type: string
+          example: Anton
+        fristName:
+          type: string
+          example: Maria
+        email:
+          type: string
+          example: mariap@gmail.com
+        password:
+          type: string
+    inline_response_200:
+      type: object
+      properties:
+        message:
+          type: string
+          example: User registered successfully!
+    inline_response_400:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Email already used!
+    auth_login_body:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: mariap@gmail.com
+        password:
+          type: string
+    inline_response_200_1:
+      type: object
+      properties:
+        message:
+          type: string
+          example: User signed-in successfully!
+    v1_food_body:
+      type: object
+      properties:
+        name:
+          type: string
+          example: pear
+        calories:
+          type: number
+          example: 57
+        carbohydrates:
+          type: number
+          example: 15
+        proteins:
+          type: number
+          example: 0.4
+        fats:
+          type: number
+          example: 0.1
+        sugar:
+          type: number
+          example: 10
+        fibre:
+          type: number
+          example: 3.1
+        water:
+          type: number
+          example: 58
+        cholesterol:
+          type: number
+          example: 0
+        potassium:
+          type: number
+          example: 0.116
+        vitaminC:
+          type: number
+          example: 7
+        calcium:
+          type: number
+          example: 0
+        iron:
+          type: number
+          example: 1
+        vitaminD:
+          type: number
+          example: 0
+        vitaminB6:
+          type: number
+          example: 0
+        cobalamin:
+          type: number
+          example: 0
+        magnesium:
+          type: number
+          example: 0
+        goodFor:
+          type: string
+          example: reparation, diabetes, Risk of Stroke, Hangover Symptoms
+        badFor:
+          type: string
+          example: people with irritable bowel syndrome (IBS) and Crohn's disease
+    v1_diet_body:
+      type: object
+      properties:
+        date:
+          type: string
+          example: 2021-10-20
+        foodId:
+          type: integer
+          example: 11
+    v1_activity_body:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Zumba
+        date:
+          type: string
+          example: 2021-02-20
+        duration:
+          type: integer
+          example: 30
+        caloriesBurnt:
+          type: integer
+          example: 11
