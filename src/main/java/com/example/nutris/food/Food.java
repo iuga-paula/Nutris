@@ -6,14 +6,14 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name="food")
+@Table(name = "food")
 public class Food {
     @Id
     @GeneratedValue
     private Long id;
 
     @NotNull
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
     @NotNull
     @Min(value = 0, message = "Must be greater than or equal to zero")
@@ -25,43 +25,43 @@ public class Food {
     @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float proteins;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float fats;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float sugar;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float fibre;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float water;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float cholesterol;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float potassium;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float vitaminC;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float calcium;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float iron;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float vitaminD;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float vitaminB6;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float cobalamin;
-     @Min(value = 0, message = "Must be greater than or equal to zero")
+    @Min(value = 0, message = "Must be greater than or equal to zero")
     @Column(columnDefinition = "float default 0.0")
     private Float magnesium;
 
@@ -117,8 +117,9 @@ public class Food {
         this.goodFor = this.getOrDefault(food.getGoodFor(), "");
         this.badFor = this.getOrDefault(food.getBadFor(), "");
     }
+
     private <T> T getOrDefault(T field, T defaultValue) {
-        if(field == null) {
+        if (field == null) {
             return defaultValue;
         }
         return field;

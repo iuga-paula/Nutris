@@ -1,5 +1,6 @@
 package com.example.nutris.user;
 
+import com.example.nutris.physicalActivity.PhysicalActivity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -11,7 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "customusers",
+@Table(name = "custom_user",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "email")
         })
@@ -37,6 +38,10 @@ public class CustomUser{
     private String password;
 
     private UserRole role = UserRole.NORMAL_USER;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<PhysicalActivity> activities;
 
     public CustomUser() {
 

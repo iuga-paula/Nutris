@@ -58,4 +58,16 @@ public class FoodController {
             return new ResponseEntity<>(new ResponseMessage(e.getMessage()).getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getFood(@RequestParam(required = true, name = "id") Long foodId, @RequestBody @Valid FoodDTO food) {
+        try {
+            Food updatedFood = foodService.updateFood(foodId, food);
+            return new ResponseEntity<>(updatedFood, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(new ResponseMessage(e.getMessage()).getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }
