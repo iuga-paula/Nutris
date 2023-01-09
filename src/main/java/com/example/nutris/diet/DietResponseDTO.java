@@ -1,36 +1,36 @@
 package com.example.nutris.diet;
 
 import com.example.nutris.food.Food;
-import com.example.nutris.user.CustomUser;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Entity
-@Table(name="diet")
-public class Diet {
-    @Id
-    @GeneratedValue
+public class DietResponseDTO {
     private Long id;
 
     @NotNull
     private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "food_id", nullable = false)
+    @NotNull
     Food food;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    CustomUser user;
-    public Diet() {
+    @NotNull
+    Long userId;
+
+    public DietResponseDTO() {
 
     }
-    public Diet(Date date, Food food, CustomUser user) {
+
+    public DietResponseDTO(Diet entity) {
+        this.date=entity.getDate();
+        this.id = entity.getId();
+        this.food = entity.getFood();
+        this.userId = entity.getUser().getId();
+    }
+    public DietResponseDTO(Date date, Food food, Long userId) {
         this.date = date;
         this.food = food;
-        this.user = user;
+        this.userId = userId;
     }
 
     public Long getId() {
@@ -57,11 +57,11 @@ public class Diet {
         this.food = food;
     }
 
-    public CustomUser getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(CustomUser user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

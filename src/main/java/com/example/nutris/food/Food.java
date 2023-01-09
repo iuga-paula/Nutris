@@ -1,8 +1,11 @@
 package com.example.nutris.food;
 
+import com.example.nutris.diet.Diet;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 @Entity
@@ -70,6 +73,10 @@ public class Food {
 
     @Column(columnDefinition = "text")
     private String badFor;
+
+    @OneToMany(mappedBy = "food")
+    private Set<Diet> diets;
+
 
     public Food(String name, Float calories, Float carbohydrates, Float proteins, Float fats, Float sugar, Float fibre, Float water, Float cholesterol, Float potassium, Float vitaminC, Float calcium, Float iron, Float vitaminD, Float vitaminB6, Float cobalamin, Float magnesium, String goodFor, String badFor) {
         this.name = name;

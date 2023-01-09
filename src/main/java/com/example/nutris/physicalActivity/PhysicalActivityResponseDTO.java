@@ -28,7 +28,7 @@ public class PhysicalActivityResponseDTO {
 
     public PhysicalActivityResponseDTO(PhysicalActivity entity) {
         this.name = entity.getName();
-        this.date = new SimpleDateFormat("dd.MM.yyyy").format(entity.getDate());
+        this.date = new SimpleDateFormat("yyyy-MM-dd").format(entity.getDate());
         this.duration = entity.getDuration();
         this.caloriesBurnt = entity.getCaloriesBurnt();
         this.user_id = entity.getUser().getId();

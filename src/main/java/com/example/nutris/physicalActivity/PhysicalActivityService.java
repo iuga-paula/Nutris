@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 
 public class PhysicalActivityService {
-    private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private final PhysicalActivityRepository activityRepository;
     private final UserRepository userRepository;
 
@@ -30,7 +30,7 @@ public class PhysicalActivityService {
         newActivity.setName(dto.getName());
         newActivity.setCaloriesBurnt(dto.getCaloriesBurnt());
         newActivity.setDuration(dto.getDuration());
-        newActivity.setDate(new SimpleDateFormat("dd.MM.yyyy").parse(dto.getDate()));
+        newActivity.setDate(dateFormat.parse(dto.getDate()));
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email  = (String) auth.getPrincipal();
         Optional<CustomUser> user = userRepository.findByEmail(email);
@@ -50,6 +50,6 @@ public class PhysicalActivityService {
     }
 
     public List<PhysicalActivity> getActivityFromInterval(String startDate, String endDate) throws ParseException {
-        return activityRepository.findByDateBetween(new SimpleDateFormat("dd.MM.yyyy").parse(startDate), new SimpleDateFormat("dd.MM.yyyy").parse(endDate));
+        return activityRepository.findByDateBetween(dateFormat.parse(startDate), dateFormat.parse(endDate));
     }
 }

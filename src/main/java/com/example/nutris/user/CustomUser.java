@@ -1,5 +1,7 @@
 package com.example.nutris.user;
 
+import com.example.nutris.diet.Diet;
+import com.example.nutris.food.Food;
 import com.example.nutris.physicalActivity.PhysicalActivity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -42,6 +44,9 @@ public class CustomUser{
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<PhysicalActivity> activities;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Diet> diets;
 
     public CustomUser() {
 
